@@ -69,7 +69,7 @@
             <div class="bg-blue-50 p-4 rounded-xl border border-blue-200 space-y-4">
                 <div>
                     <label class="text-sm font-bold text-slate-600">ต้องการปลดหนี้ใน (เดือน):</label>
-                    <input type="number" id="goalMonths" value="120" onkeyup="updatePlan()" class="w-full p-3 mt-1 rounded border">
+                    <input type="number" id="goalMonths" placeholder="เดือน" onkeyup="updatePlan()" class="w-full p-3 mt-1 rounded border">
                 </div>
                 <div class="p-3 bg-blue-600 text-white rounded-lg text-center">
                     <p class="text-xs opacity-80">ต้องจ่ายรายเดือนอย่างน้อย:</p>
@@ -183,10 +183,13 @@
         let totalMonthlyPayment = 0;
         let note = '';
 
+        // ถ้ายังไม่ได้กรอกเป้าหมาย ใช้งวดที่เหลือมากสุดเป็นค่าเริ่มต้น
+        let n = goalMonths;
+        if (!n || n <= 0) n = maxMonths;
+
         debts.forEach(d => {
             const P = d.amount;
             const r = (d.interest / 100) / 12; // ดอกเบี้ยรายเดือน
-            const n = goalMonths;
 
             if (n > 0 && P > 0) {
                 if (r === 0) {
