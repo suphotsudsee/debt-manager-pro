@@ -1,0 +1,25 @@
+{
+  "name": "Debt Manager Pro",
+  "short_name": "ปลดหนี้",
+  "description": "แอปช่วยปลดหนี้ - จัดการหนี้ คำนวณดอกเบี้ย และวางแผนการจ่าย",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#2563eb",
+  "theme_color": "#2563eb",
+  "lang": "th",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
