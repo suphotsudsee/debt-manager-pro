@@ -1,4 +1,4 @@
-const CACHE_NAME = 'debt-manager-v1';
+const CACHE_NAME = 'debt-manager-v2';
 const ASSETS = [
     './',
     './index.html',
@@ -23,17 +23,15 @@ self.addEventListener('activate', (e) => {
     self.clients.claim();
 });
 
+// Network-first: โหลดใหม่ก่อน, ถ้า offline ใช้ cache
 self.addEventListener('fetch', (e) => {
     e.respondWith(
-        caches.match(e.request).then(cached => {
-            return cached || fetch(e.request).then(resp => {
-                // Cache same-origin GET requests
-                if (e.request.method === 'GET' && new URL(e.request.url).origin === self.location.origin) {
-                    const respClone = resp.clone();
-                    caches.open(CACHE_NAME).then(cache => cache.put(e.request, respClone));
-                }
-                return resp;
-            }).catch(() => cached);
-        })
+        fetch(e.request).then(resp => {
+            if (e.request.method === 'GET' && new URL(e.request.url).origin === self.location.origin) {
+                const respClone = resp.clone();
+                caches.open(CACHE_NAME).then(cache => cache.put(e.request, respClone));
+            }
+            return resp;
+        }).catch(() => caches.match(e.request))
     );
 });
