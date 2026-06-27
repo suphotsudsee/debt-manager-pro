@@ -1,9 +1,0 @@
-{
-  "appId": "com.suphot.debtmanagerpro",
-  "appName": "Debt Manager Pro",
-  "webDir": "www",
-  "server": {
-    "androidScheme": "https"
-  },
-  "android": {}
-}
